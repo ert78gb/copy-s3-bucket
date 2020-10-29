@@ -1,0 +1,11 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# IntelliJ developer concifurations
+.idea/workspace.xml
+
+node_modules
+
+.env
+result.json

@@ -1,0 +1,21 @@
+{
+  "name": "copy-s3-bucket",
+  "version": "1.0.0",
+  "description": "Copy S3 bucket from 1 service provider to other",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ert78gb@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ert78gb/copy-s3-bucket.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.780.0",
+    "dotenv": "^8.2.0",
+    "p-queue": "^6.6.2"
+  }
+}
