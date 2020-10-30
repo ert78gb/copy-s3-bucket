@@ -9,6 +9,11 @@ If the ETags are matches then skips the copy.
 
 Support parallel copy of objects.
 
+Copy:
+ - Object content
+ - ContentType
+ - Metadata
+
 ## How to use
 
 Compatible with Node 15+
@@ -18,7 +23,9 @@ Compatible with Node 15+
 2) Install dependencies `$ npm ci`
 3) Copy the `.env-example` file as `.env` and fill the connection information. `$ cp .env-example .env`
 4) Start the script `$ node index.js`
+5) Check the `result.json` in the working directory. Is it contains any error or not. If it contains then repeat from step 5. The script try copy only the objects that are missing from the destination bucket or has error in the `result.json` 
 
 ## TODO
 
 - Better progress bar
+- Better final report

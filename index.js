@@ -71,7 +71,7 @@ async function copyObject (sourceObject) {
 
   const alreadyProcessed = processedMap.get(sourceObject.Key)
 
-  if (alreadyProcessed?.Key === sourceObject.Key && !alreadyProcessed?.error)
+  if (alreadyProcessed?.key === sourceObject.Key && !alreadyProcessed?.error)
     return
 
   const destObjects = await destinationS3.listObjectsV2({
@@ -84,6 +84,11 @@ async function copyObject (sourceObject) {
   if (!copy)
     return
 
+  const headObject = await sourceS3.headObject({
+    Bucket: process.env.SOURCE_BUCKET,
+    Key: sourceObject.Key,
+  }).promise()
+
   const readStream = sourceS3.getObject({
     Bucket: process.env.SOURCE_BUCKET,
     Key: sourceObject.Key,
@@ -92,6 +97,8 @@ async function copyObject (sourceObject) {
   return destinationS3.upload({
     Bucket: process.env.DESTINATION_BUCKET,
     Key: sourceObject.Key,
+    ContentType: headObject.ContentType,
+    Metadata: headObject.Metadata,
     Body: readStream,
   }).promise()
     .then(() => {
